@@ -1,12 +1,14 @@
  ** **Imageload** ** 
 
+No picture u say a j8!
+
 少啰嗦，先看效果
 
 ![闭嘴看J8](https://github.com/michael007js/Imageload/blob/master/images/03.gif "闭嘴看J8")
 
 
  **项目介绍** 
-一个双击666的图片加载框架，支持fresco、glide、Picasso等等之类的主流框架，内部默认封装了Glide、Fresco，具有非常高的可扩展性，开发者可非常方便的来回切换想要的框架。框架默认除了支持普通图片的各种加载外，还提供了一套特效加载，特效枚举类ImageType，提供了默认的特效参数配置类ImageTypeOption，可以自己设置，也可以new 一个开发者自定义的特效参数配置类
+一个双击666的图片加载框架，支持fresco、glide、Picasso等等之类的主流框架，内部默认封装了Glide[传送门](https://github.com/michael007js/Imageload/blob/master/Lib/src/main/java/com/sss/imageload/imp/GlideImageLoad.java)、Fresco[传送门](https://github.com/michael007js/Imageload/blob/master/Lib/src/main/java/com/sss/imageload/imp/FrescoImageLoad.java)，具有非常高的可扩展性，开发者可非常方便的来回切换想要的框架。（个人推荐使用强大的Fresco）框架默认除了支持普通图片的各种加载外，还提供了一套特效加载，特效枚举类ImageType，提供了默认的特效参数配置类ImageTypeOption，可以自己设置，也可以new 一个开发者自定义的特效参数配置类
 
 开发者不需要关心框架内部怎么实现，管你里面是啥玩意，跟我有半毛钱的关系吗？，只需要知道继承ImageLoad这个抽象类实现内部的抽象方法即可，这也是开发者唯一需要做的事情
 
@@ -16,7 +18,7 @@
  **使用说明** 
  
  
-    导入第三方依赖，看使用哪种框架就导入哪种依赖，这里提供两种用的比较多的依赖
+    导入第三方依赖，看使用哪种框架就导入哪种依赖，这里提供两种用的比较多的依赖（如果你需要使用到图像处理，则必须导入下面的图像引擎，否则将报错！！！）
     implementation 'com.github.bumptech.glide:glide:4.5.0'  //glide
     implementation 'com.facebook.fresco:fresco:1.9.0'    // fresco
     implementation 'com.facebook.fresco:animated-gif:1.9.0'    // fresco     支持 GIF 动图，需要添加
@@ -28,7 +30,7 @@
     implementation 'com.michael007js:Lib:1.0.0'
     
     
-如果你想重新扩展本库的话可以直接导入Module,然后像下面这样子可以为所以为了
+如果你想偷懒，想直接使用本库提供的API的时候，直接从第二步开始，如果想DIY本库的话可以直接导入Module,然后就可以像下面这样子为所以为了
 
 1. 继承ImageLoad抽象类，实现内部的抽象方法，当然，如果有兴趣，可以继续扩展内部的方法
 
@@ -100,7 +102,7 @@ public abstract class ImageLoad {
 当然，远不止这些配置，还有一堆的参数配置可以自定义       
 
 
-懒得讲了，上J8
+懒得讲了，翠花，上j8
 
 ![XXX](https://github.com/michael007js/Imageload/blob/master/images/01.png "QQ截图20180717143419.png")
 
