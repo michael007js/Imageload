@@ -64,11 +64,7 @@ public abstract class ImageLoad {
  **画重点，要考！使用fresco的开发者必须初始化一下，内部默认提供了一个狂拽酷炫吊炸天的fresco配置类FrescoImagePipelineConfig,[传送门](https://github.com/michael007js/Imageload/blob/master/Lib/src/main/java/com/sss/imageload/frescoConfig/FrescoImagePipelineConfig.java)如果看着有点不爽可以自行重定义或直接在原配上修改** 
     
     Fresco.initialize(this, FrescoImagePipelineConfig.getDefaultImagePipelineConfig(this));
-
-        ImageloadManager.Builder builder=new ImageloadManager.Builder()
-                .setContext(this)
-                .setImageLoad(new FrescoImageLoad(this));
-        ImageloadManager.getInstance().build(builder); 
+    ImageloadManager.getInstance().build(new ImageloadManager.Builder().setImageLoad(new FrescoImageLoad())); 
 
 开发者只需要在此将imageload的实现类FrescoImageLoad替换成想要的框架即可
 
@@ -90,7 +86,7 @@ public abstract class ImageLoad {
 
                 .setErrorImageInt(R.mipmap.ic_launcher)//错误图
 
-                .setGif(list.get(true)//设置是否是GIF模式
+                .setGif(true)//设置是否是GIF模式
 
                 .setImageTypeOption(new ImageTypeOption().XXXXXXXXXXXXXXXX之类的玩意)//设置特效参数（内部默认了一套个人认为比较好的参数，开发者可以自定义）
 
