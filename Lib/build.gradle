@@ -1,0 +1,45 @@
+apply plugin: 'com.android.library'
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.5.0'
+    // fresco
+    implementation 'com.facebook.fresco:fresco:1.9.0'
+    // fresco     支持 GIF 动图，需要添加
+    implementation 'com.facebook.fresco:animated-gif:1.9.0'
+    //fresco图像引擎//https://github.com/wasabeef/fresco-processors
+    implementation 'jp.wasabeef:fresco-processors:2.1.0'
+    //glide图像引擎//https://github.com/wasabeef/glide-transformations
+    implementation 'jp.wasabeef:glide-transformations:3.3.0'
+    //GPU Filters
+    implementation 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
+}
+
+
+
