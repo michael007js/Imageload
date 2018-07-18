@@ -58,21 +58,25 @@ public abstract class ImageLoad {
 
 ImageloadManager.getInstance()
 
-.load("假装我是个图片地址")
+            .load(uri)//图片地址
 
-.centerInside()
+            .setDuration(100)//淡入淡出时间
 
-.setRoundAngle(50)
+            .setThumbnail(true)//渐进式加载
 
-.setImageType(ImageType.Kuawahara)
+            .setRoundAngle(20)//圆角
 
-.setPlacesHolderImage(R.drawable.ic_launcher)
+            .setPlacesHolderImageInt(R.mipmap.ic_launcher)//占位图
 
-.setErrorImage(R.drawable.ic_launcher)
+            .setErrorImageInt(R.mipmap.ic_launcher)//错误图
 
-.setThumbnail(true)
+            .setGif(true)//设置是否是GIF模式
 
-.into(findViewById(R.id.fresc_pic))
+            .setImageTypeOption(new ImageTypeOption().XXXXXXXXXXXXXXXX之类的玩意)//设置特效参数（内部默认了一套个人认为比较好的参数，开发者可以自定义）
+
+            .setImageType(ImageType.Grayscale)//设置特效
+
+            .into(ImageLoadView);//召唤神龙
 
 
 当然，远不止这些配置，还有一堆的参数配置可以自定义       
