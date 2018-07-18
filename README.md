@@ -102,6 +102,48 @@ public abstract class ImageLoad {
 
 ![XXX](https://github.com/michael007js/Imageload/blob/master/images/01.png "QQ截图20180717143419.png")
 
+
+**混淆添加**
+
+Glide:
+
+-keep public class * implements com.bumptech.glide.module.GlideModule
+
+-keep public class * extends com.bumptech.glide.module.AppGlideModule
+
+-keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
+
+**[] $VALUES;
+
+  public *;
+}
+
+Fresco:
+
+-keep,allowobfuscation @interface com.facebook.common.internal.DoNotStrip
+
+-keep,allowobfuscation @interface com.facebook.soloader.DoNotOptimize
+
+-keep @com.facebook.common.internal.DoNotStrip class *
+
+-keepclassmembers class * {
+
+    @com.facebook.common.internal.DoNotStrip *;
+}
+-keep @com.facebook.soloader.DoNotOptimize class *
+
+-keepclassmembers class * {
+
+    @com.facebook.soloader.DoNotOptimize *;
+}
+
+-keepclassmembers class * {
+
+    native <methods>;
+}
+
+-dontwarn com.facebook.infer.**
+
  over
 
  By SSS
