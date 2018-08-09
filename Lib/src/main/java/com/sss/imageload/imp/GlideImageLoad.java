@@ -77,8 +77,6 @@ public class GlideImageLoad extends ImageLoad {
             requestBuilder =requestManager.load(option.getRes());
         } else if (option.getFile() != null) {
             requestBuilder =requestManager.load(option.getFile());
-        } else if (option.getDrawable() != null) {
-            requestBuilder = requestManager.load(option.getDrawable());
         }
         //设置请求监听
         requestBuilder.listener(new RequestListener<Drawable>() {

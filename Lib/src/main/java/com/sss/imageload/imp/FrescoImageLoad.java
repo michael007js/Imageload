@@ -72,8 +72,6 @@ public class FrescoImageLoad extends ImageLoad {
                 uri = Uri.parse("res://" + option.getTarget().getContext().getPackageName() + "/" + option.getRes());
             } else if (option.getFile() != null) {
                 uri = Uri.fromFile(option.getFile());
-            } else if (option.getDrawable() != null) {
-                uri = Uri.parse("res://" + option.getTarget().getContext().getPackageName() + "/" + option.getDrawable());
             }
             //设置bitmap尺寸
             ResizeOptions resizeOptions = null;

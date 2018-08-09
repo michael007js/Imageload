@@ -81,10 +81,6 @@ public class ImageloadManager {
         return new ImageloadOption(uri);
     }
 
-    public ImageloadOption load(Drawable drawable) {
-        check();
-        return new ImageloadOption(drawable);
-    }
     /*************************************************设置图片加载地址↑*************************************************/
 
 

@@ -24,7 +24,7 @@ public class ImageloadOption {
     private ImageType imageType;//图片显示效果
     private ImageTypeOption imageTypeOption = new ImageTypeOption();//提供一个默认的图片显示效果配置类，用户可以自定义
     private float roundAngle = 5f;//圆角
-    private int roundAngleColor = R.color.white;//圆角颜色，fresco专用。如果使用fresco框架，且设置圆角的话则必须设置此参数
+    private int roundAngleColor = R.color.white;//圆角颜色，fresco专用且必须使用引用，如果使用非引用的颜色的话Fresco会报错！如果使用fresco框架，且设置圆角的话则必须设置此参数
     private int duration = 300;//淡入淡出时间
     private boolean isGif;//是否为GIF
     private boolean thumbnail = true;//渐进式加载
@@ -41,7 +41,6 @@ public class ImageloadOption {
     private int res;//资源路径
     private File file;//文件路径
     private Uri uri;//uri路径
-    private Drawable drawable;//drawable路径
     private String downloadFileName;//图片下载完成后要储存的名称
     private boolean notifyUpdateGallery;//图片下载完成后是否要通知图库更新
     private ImageloadView view;//要显示的图片View,至于为什么是这个类型的View而不是ImageView，请参考该类中的说明
@@ -65,9 +64,6 @@ public class ImageloadOption {
         this.uri = uri;
     }
 
-    public ImageloadOption(Drawable drawable) {
-        this.drawable = drawable;
-    }
 
     public String getPath() {
         return path;
@@ -85,9 +81,6 @@ public class ImageloadOption {
         return uri;
     }
 
-    public Drawable getDrawable() {
-        return drawable;
-    }
 
     public OnDownloadImageSuccessOrFailCallBack getOnDownloadImageSuccessOrFailCallBack() {
         return onDownloadImageSuccessOrFailCallBack;
