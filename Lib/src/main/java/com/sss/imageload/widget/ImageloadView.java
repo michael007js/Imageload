@@ -53,7 +53,7 @@ public class ImageloadView extends SimpleDraweeView {
                 case MotionEvent.ACTION_DOWN:
                     Drawable drawable = getDrawable();
                     if (drawable != null) {
-                        drawable.mutate().setColorFilter(Color.LTGRAY, PorterDuff.Mode.MULTIPLY);
+                        drawable.mutate().setColorFilter(Color.LTGRAY,PorterDuff.Mode.MULTIPLY);
                     }
                     break;
                 case MotionEvent.ACTION_MOVE:
@@ -66,10 +66,8 @@ public class ImageloadView extends SimpleDraweeView {
                     }
                     break;
             }
-            return true;
-        } else {
-            return super.onTouchEvent(event);
         }
+        return super.onTouchEvent(event);
 
 
     }
