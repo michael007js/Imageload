@@ -4,7 +4,7 @@ No picture u say a j8!
 
 少啰嗦，先看效果
 
-![闭嘴看J8](https://github.com/michael007js/Imageload/blob/master/images/03.gif "闭嘴看J8")
+![闭嘴看图](https://github.com/michael007js/Imageload/blob/master/images/03.gif "闭嘴看图")
 
 
  **项目介绍** 
@@ -16,7 +16,9 @@ No picture u say a j8!
 [原因如下](https://github.com/michael007js/Imageload/blob/master/Lib/src/main/java/com/sss/imageload/widget/ImageloadView.java)
 
  **使用说明** 
- 
+    
+    导入本库依赖
+    implementation 'com.michael007js:Lib:1.0.0'
  
     导入第三方依赖，看使用哪种框架就导入哪种依赖，这里提供两种用的比较多的依赖（如果你需要使用到图像处理，则必须导入下面的图像引擎，否则将报错！！！）
     implementation 'com.github.bumptech.glide:glide:4.5.0'  //glide
@@ -26,11 +28,9 @@ No picture u say a j8!
     implementation 'jp.wasabeef:glide-transformations:3.3.0'    //glide图像引擎//https://github.com/wasabeef/glide-transformations
     implementation 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'    //GPU Filters
     
-    导入本库依赖
-    implementation 'com.michael007js:Lib:1.0.0'
     
     
-如果你想偷懒，想直接使用本库提供的API的时候，直接从第二步开始，如果想DIY本库的话可以直接导入Module,然后就可以像下面这样子为所以为了
+如果你想偷懒，想直接使用本库提供的API的时候，直接从第二步开始，如果想DIY本库的话老老实实往下看，然后就可以以为所欲为了
 
 1. 继承ImageLoad抽象类，实现内部的抽象方法，当然，如果有兴趣，可以继续扩展内部的方法
 
@@ -51,10 +51,10 @@ public abstract class ImageLoad {
     //清理缓存
     public abstract void clearCache(Context context, CacheType cacheType);
 
-    //暂停网络请求
+    //暂停请求
     public abstract void pause() 
 
-    //恢复网络请求
+    //恢复请求
     public abstract void resume() 
     
 }
@@ -98,7 +98,7 @@ public abstract class ImageLoad {
 当然，远不止这些配置，还有一堆的参数配置可以自定义       
 
 
-懒得讲了，翠花，上j8
+懒得讲了，翠花，上j8...啊呸！上图！
 
 ![XXX](https://github.com/michael007js/Imageload/blob/master/images/01.png "QQ截图20180717143419.png")
 
