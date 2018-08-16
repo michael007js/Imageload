@@ -8,6 +8,7 @@ import com.sss.imageload.ImageloadManager;
 import com.sss.imageload.R;
 import com.sss.imageload.dao.OnDownloadImageSuccessOrFailCallBack;
 import com.sss.imageload.dao.OnImageloadSuccessOrFailCallBack;
+import com.sss.imageload.dao.OnMeasureImageSizeCallBack;
 import com.sss.imageload.enums.ImageType;
 import com.sss.imageload.widget.ImageloadView;
 
@@ -19,6 +20,7 @@ import java.io.File;
  */
 
 public class ImageloadOption {
+    private OnMeasureImageSizeCallBack onMeasureImageSizeCallBack;//测量图片尺寸回调
     private OnImageloadSuccessOrFailCallBack onImageloadSuccessOrFailCallBack;//图片加载回调
     private OnDownloadImageSuccessOrFailCallBack onDownloadImageSuccessOrFailCallBack;//图片下载回调
     private ImageType imageType;//图片显示效果
@@ -81,6 +83,14 @@ public class ImageloadOption {
         return uri;
     }
 
+    public OnMeasureImageSizeCallBack getOnMeasureImageSizeCallBack() {
+        return onMeasureImageSizeCallBack;
+    }
+
+    public ImageloadOption setOnMeasureImageSizeCallBack(OnMeasureImageSizeCallBack onMeasureImageSizeCallBack) {
+        this.onMeasureImageSizeCallBack = onMeasureImageSizeCallBack;
+        return this;
+    }
 
     public OnDownloadImageSuccessOrFailCallBack getOnDownloadImageSuccessOrFailCallBack() {
         return onDownloadImageSuccessOrFailCallBack;
@@ -277,7 +287,13 @@ public class ImageloadOption {
         ImageloadManager.getInstance().downLoadImage(context, this);
     }
 
-
+    /**
+     * 测量图片
+     * @param context
+     */
+    public void  measureImage(Context context){
+        ImageloadManager.getInstance().measureImage(context, this);
+    }
     /**
      * 召唤神龙
      *

@@ -28,6 +28,13 @@ public abstract class ImageLoad {
     public abstract void downLoadImage(Context context,ImageloadOption option);
 
     /**
+     * 测量图片尺寸
+     * @param context
+     * @param option
+     */
+    public abstract void measureImage(Context context, final ImageloadOption option);
+
+    /**
      * 获取缓存目录
      * @param context
      * @return

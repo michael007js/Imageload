@@ -3,6 +3,7 @@ package com.eagersoft.youzy.ui.Main;
 import android.Manifest;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
@@ -14,6 +15,7 @@ import com.eagersoft.youzy.ui.Main.View.IMainView;
 import com.hjq.permissions.OnPermission;
 import com.hjq.permissions.XXPermissions;
 import com.sss.imageload.ImageloadManager;
+import com.sss.imageload.dao.OnMeasureImageSizeCallBack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +32,27 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         listView = findViewById(R.id.listview);
         presenter = new MainPresenter(this);
         requestExternalStoragePermission();
+
+        new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                String url = "https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1531795345&di=cf95bcc467333c81cba8f46d5a91f5cb&src=http://image2.suning.cn/uimg/b2c/newcatentries/0070173409-000000000706960205_5_800x800.jpg";
+
+                ImageloadManager.getInstance().load(url).setDownloadFileName("123").setOnMeasureImageSizeCallBack(new OnMeasureImageSizeCallBack() {
+                    @Override
+                    public void onMeasureImageSize(int imageWidth, int imageHeight) {
+                        Log.e("sssss",imageWidth+"---"+imageHeight);
+                    }
+
+                    @Override
+                    public void onMeasureImageFail(Throwable throwable) {
+                        Log.e("sssss",throwable.getLocalizedMessage());
+                    }
+                }).measureImage(MainActivity.this);
+            }
+        }.start();
+
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {

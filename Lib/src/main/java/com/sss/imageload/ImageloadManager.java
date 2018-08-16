@@ -129,6 +129,16 @@ public class ImageloadManager {
         check();
         imageLoad.downLoadImage(context,option);
     }
+
+    /**
+     * 测量图片
+     *
+     * @param option
+     */
+    public void measureImage(Context context,ImageloadOption option) {
+        check();
+        imageLoad.measureImage(context,option);
+    }
     /**
      * 请求是否已经暂停
      */

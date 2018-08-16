@@ -2,6 +2,7 @@ package com.sss.imageload.imp;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PointF;
 import android.graphics.drawable.Animatable;
@@ -10,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.view.ViewGroup;
 
 import com.sss.imageload.dao.ImageLoad;
+import com.sss.imageload.dao.OnDownloadImageSuccessOrFailCallBack;
 import com.sss.imageload.enums.CacheType;
 import com.sss.imageload.enums.ImageType;
 import com.sss.imageload.frescoConfig.FrescoImagePipelineConfig;
@@ -34,6 +36,7 @@ import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.facebook.imagepipeline.request.Postprocessor;
 
 import java.io.File;
+import java.lang.ref.WeakReference;
 
 import jp.wasabeef.fresco.processors.BlurPostprocessor;
 import jp.wasabeef.fresco.processors.ColorFilterPostprocessor;
@@ -316,7 +319,41 @@ public class FrescoImageLoad extends ImageLoad {
         }, CallerThreadExecutor.getInstance());
 
     }
+    /**
+     * 测量图片
+     * @param context
+     * @param option
+     */
+    @Override
+    public void measureImage(Context context, final ImageloadOption option) {
+        option.setDownloadFileName(System.currentTimeMillis() + "");
+        option.setOnDownloadImageSuccessOrFailCallBack(new OnDownloadImageSuccessOrFailCallBack() {
+            @Override
+            public void onDownloadImageSuccess(File file) {
+                WeakReference<Bitmap> bitmapWeakReference = new WeakReference<>(BitmapFactory.decodeFile(file.getAbsolutePath()));
+                if (bitmapWeakReference.get() != null) {
+                    if (option.getOnMeasureImageSizeCallBack() != null) {
+                        option.getOnMeasureImageSizeCallBack().onMeasureImageSize(bitmapWeakReference.get().getWidth(), bitmapWeakReference.get().getHeight());
+                    }
+                } else {
+                    if (option.getOnMeasureImageSizeCallBack() != null) {
+                        option.getOnMeasureImageSizeCallBack().onMeasureImageFail(new RuntimeException("GC is running,I has dead!"));
+                    }
+                }
+                bitmapWeakReference.clear();
+            }
 
+            @Override
+            public void onDownloadImageFail(Throwable failureCause) {
+                if (option.getOnMeasureImageSizeCallBack() != null) {
+                    option.getOnMeasureImageSizeCallBack().onMeasureImageFail(failureCause);
+                }
+            }
+        });
+
+
+        downLoadImage(context, option);
+    }
 
     /**
      * 获取缓存目录

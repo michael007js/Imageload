@@ -1,6 +1,8 @@
 package com.sss.imageload.imp;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PointF;
 import android.graphics.drawable.BitmapDrawable;
@@ -32,12 +34,14 @@ import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
 import com.bumptech.glide.request.transition.Transition;
 import com.sss.imageload.dao.ImageLoad;
+import com.sss.imageload.dao.OnDownloadImageSuccessOrFailCallBack;
 import com.sss.imageload.enums.CacheType;
 import com.sss.imageload.enums.ImageType;
 import com.sss.imageload.options.ImageloadOption;
 import com.sss.imageload.utils.ImageloadUtils;
 
 import java.io.File;
+import java.lang.ref.WeakReference;
 import java.util.concurrent.ExecutionException;
 
 import jp.wasabeef.glide.transformations.BlurTransformation;
@@ -237,11 +241,11 @@ public class GlideImageLoad extends ImageLoad {
         }
         //召唤神龙
         requestBuilder.apply(requestOptions);
-        requestBuilder.into(new SimpleTarget<BitmapDrawable>() {
+        requestBuilder.into(new SimpleTarget<Drawable>() {
             @Override
-            public void onResourceReady(@NonNull BitmapDrawable resource, @Nullable Transition transition) {
+            public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
                 if (option.getOnImageloadSuccessOrFailCallBack() != null) {
-                    option.getOnImageloadSuccessOrFailCallBack().onSuccess(resource.getBitmap().getWidth(),resource.getBitmap().getHeight());
+                    option.getOnImageloadSuccessOrFailCallBack().onSuccess(((BitmapDrawable) resource).getBitmap().getWidth(),((BitmapDrawable) resource).getBitmap().getHeight());
                 }
             }
         });
@@ -290,7 +294,41 @@ public class GlideImageLoad extends ImageLoad {
             }
         }
     }
+    /**
+     * 测量图片
+     * @param context
+     * @param option
+     */
+    @Override
+    public void measureImage(Context context, final ImageloadOption option) {
+        option.setDownloadFileName(System.currentTimeMillis() + "");
+        option.setOnDownloadImageSuccessOrFailCallBack(new OnDownloadImageSuccessOrFailCallBack() {
+            @Override
+            public void onDownloadImageSuccess(File file) {
+                WeakReference<Bitmap> bitmapWeakReference = new WeakReference<>(BitmapFactory.decodeFile(file.getAbsolutePath()));
+                if (bitmapWeakReference.get() != null) {
+                    if (option.getOnMeasureImageSizeCallBack() != null) {
+                        option.getOnMeasureImageSizeCallBack().onMeasureImageSize(bitmapWeakReference.get().getWidth(), bitmapWeakReference.get().getHeight());
+                    }
+                } else {
+                    if (option.getOnMeasureImageSizeCallBack() != null) {
+                        option.getOnMeasureImageSizeCallBack().onMeasureImageFail(new RuntimeException("GC is running,I has dead!"));
+                    }
+                }
+                bitmapWeakReference.clear();
+            }
 
+            @Override
+            public void onDownloadImageFail(Throwable failureCause) {
+                if (option.getOnMeasureImageSizeCallBack() != null) {
+                    option.getOnMeasureImageSizeCallBack().onMeasureImageFail(failureCause);
+                }
+            }
+        });
+
+
+        downLoadImage(context, option);
+    }
     /**
      * 获取缓存目录
      *
