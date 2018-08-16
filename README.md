@@ -10,7 +10,7 @@ No picture u say a j8!
  **项目介绍** 
 一个双击666的图片加载框架，支持fresco、glide、Picasso等等之类的主流框架，内部默认封装了Glide[传送门](https://github.com/michael007js/Imageload/blob/master/Lib/src/main/java/com/sss/imageload/imp/GlideImageLoad.java)、Fresco[传送门](https://github.com/michael007js/Imageload/blob/master/Lib/src/main/java/com/sss/imageload/imp/FrescoImageLoad.java)，具有非常高的可扩展性，开发者可非常方便的来回切换想要的框架。（个人推荐使用强大的Fresco）框架默认除了支持普通图片的各种加载外，还提供了一套特效加载，特效枚举类ImageType，提供了默认的特效参数配置类ImageTypeOption，可以自己设置，也可以new 一个开发者自定义的特效参数配置类
 
-开发者不需要关心框架内部怎么实现，管你里面是啥玩意，跟我有半毛钱的关系吗？，只需要知道继承ImageLoad这个抽象类实现内部的抽象方法即可，这也是开发者唯一需要做的事情
+开发者不需要关心框架内部怎么实现，管你里面是啥玩意，跟我有半毛钱的关系吗？只需要知道继承ImageLoad这个抽象类实现内部的抽象方法即可，这也是开发者唯一需要做的事情
 
 其次，建议开发者使用框架内部提供的ImageloadView控件作为图片框
 [原因如下](https://github.com/michael007js/Imageload/blob/master/Lib/src/main/java/com/sss/imageload/widget/ImageloadView.java)
@@ -41,6 +41,9 @@ public abstract class ImageLoad {
 
     //下载图片
     public abstract void downLoadImage(ImageloadOption option);
+    
+    //测量图片尺寸
+    public abstract void measureImage(Context context, final ImageloadOption option);
 
     //获取缓存目录
     public abstract File getCacheDir(Context context);
