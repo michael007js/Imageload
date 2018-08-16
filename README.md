@@ -43,7 +43,7 @@ public abstract class ImageLoad {
     public abstract void downLoadImage(ImageloadOption option);
     
     //测量图片尺寸
-    public abstract void measureImage(Context context, final ImageloadOption option);
+    public abstract void measureImage(Context context, ImageloadOption option);
 
     //获取缓存目录
     public abstract File getCacheDir(Context context);
