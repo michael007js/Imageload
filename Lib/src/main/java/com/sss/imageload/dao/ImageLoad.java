@@ -32,7 +32,7 @@ public abstract class ImageLoad {
      * @param context
      * @param option
      */
-    public abstract void measureImage(Context context, final ImageloadOption option);
+    public abstract void measureImage(Context context, ImageloadOption option);
 
     /**
      * 获取缓存目录
