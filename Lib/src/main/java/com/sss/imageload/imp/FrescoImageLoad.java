@@ -150,7 +150,7 @@ public class FrescoImageLoad extends ImageLoad {
                 @Override
                 public void onFinalImageSet(String id, @Nullable ImageInfo imageInfo, @Nullable Animatable animatable) {
                     if (option.getOnImageloadSuccessOrFailCallBack() != null) {
-                        option.getOnImageloadSuccessOrFailCallBack().onSuccess();
+                        option.getOnImageloadSuccessOrFailCallBack().onSuccess(imageInfo.getWidth(),imageInfo.getHeight());
                     }
                     //由于fresco的特性，当用户图片框宽或高设置为wrap_content时将为0，所以展示图片的时候判断到图片框的宽或高小于1的时候就按照图片实际传的尺寸来重新设置
                     if (imageInfo != null && (option.getTarget().getLayoutParams().width != ViewGroup.LayoutParams.MATCH_PARENT || option.getTarget().getLayoutParams().height != ViewGroup.LayoutParams.MATCH_PARENT)) {

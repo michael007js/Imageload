@@ -8,7 +8,7 @@ import android.view.View;
 
 public interface OnImageloadSuccessOrFailCallBack {
 
-    void onSuccess();
+    void onSuccess(int imageWidth,int imageHeight);
 
     void onFail(View view, Exception e);
 }

@@ -3,8 +3,10 @@ package com.sss.imageload.imp;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PointF;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Looper;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
@@ -25,8 +27,10 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.FutureTarget;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
+import com.bumptech.glide.request.transition.Transition;
 import com.sss.imageload.dao.ImageLoad;
 import com.sss.imageload.enums.CacheType;
 import com.sss.imageload.enums.ImageType;
@@ -90,9 +94,6 @@ public class GlideImageLoad extends ImageLoad {
 
             @Override
             public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                if (option.getOnImageloadSuccessOrFailCallBack() != null) {
-                    option.getOnImageloadSuccessOrFailCallBack().onSuccess();
-                }
                 return false;
             }
         });
@@ -236,6 +237,14 @@ public class GlideImageLoad extends ImageLoad {
         }
         //召唤神龙
         requestBuilder.apply(requestOptions);
+        requestBuilder.into(new SimpleTarget<BitmapDrawable>() {
+            @Override
+            public void onResourceReady(@NonNull BitmapDrawable resource, @Nullable Transition transition) {
+                if (option.getOnImageloadSuccessOrFailCallBack() != null) {
+                    option.getOnImageloadSuccessOrFailCallBack().onSuccess(resource.getBitmap().getWidth(),resource.getBitmap().getHeight());
+                }
+            }
+        });
         requestBuilder.into((ImageView) option.getTarget());
     }
 
