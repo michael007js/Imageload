@@ -11,6 +11,7 @@ import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
@@ -38,6 +39,7 @@ import com.sss.imageload.dao.OnDownloadImageSuccessOrFailCallBack;
 import com.sss.imageload.enums.CacheType;
 import com.sss.imageload.enums.ImageType;
 import com.sss.imageload.options.ImageloadOption;
+import com.sss.imageload.progress.ProgressHelper;
 import com.sss.imageload.utils.ImageloadUtils;
 
 import java.io.File;
@@ -75,16 +77,22 @@ public class GlideImageLoad extends ImageLoad {
         RequestOptions requestOptions = new RequestOptions();
         RequestBuilder requestBuilder = null;
         RequestManager requestManager = Glide.with(option.getTarget().getContext());
-        if (option.isGif())requestManager.asGif();
+        if (option.isGif()) requestManager.asGif();
         //图片地址
         if (option.getUri() != null) {
             requestBuilder = requestManager.load(option.getUri());
+                if (option.getUri().getPath()!=null){
+                    if ("http://".equals(option.getUri().getPath())||"https://".equals(option.getUri().getPath())){
+                        ProgressHelper.getInstance().addListener(option.getPath(), option.getOnProgressCallBack());
+                    }
+                }
         } else if (option.getPath() != null) {
-            requestBuilder = requestBuilder.load(option.getPath());
+            requestBuilder = requestManager.load(option.getPath());
+            ProgressHelper.getInstance().addListener(option.getPath(), option.getOnProgressCallBack());
         } else if (option.getRes() != 0) {
-            requestBuilder =requestManager.load(option.getRes());
+            requestBuilder = requestManager.load(option.getRes());
         } else if (option.getFile() != null) {
-            requestBuilder =requestManager.load(option.getFile());
+            requestBuilder = requestManager.load(option.getFile());
         }
         //设置请求监听
         requestBuilder.listener(new RequestListener<Drawable>() {
@@ -245,7 +253,7 @@ public class GlideImageLoad extends ImageLoad {
             @Override
             public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
                 if (option.getOnImageloadSuccessOrFailCallBack() != null) {
-                    option.getOnImageloadSuccessOrFailCallBack().onSuccess(((BitmapDrawable) resource).getBitmap().getWidth(),((BitmapDrawable) resource).getBitmap().getHeight());
+                    option.getOnImageloadSuccessOrFailCallBack().onSuccess(((BitmapDrawable) resource).getBitmap().getWidth(), ((BitmapDrawable) resource).getBitmap().getHeight());
                 }
             }
         });
@@ -294,8 +302,10 @@ public class GlideImageLoad extends ImageLoad {
             }
         }
     }
+
     /**
      * 测量图片
+     *
      * @param context
      * @param option
      */
@@ -329,6 +339,7 @@ public class GlideImageLoad extends ImageLoad {
 
         downLoadImage(context, option);
     }
+
     /**
      * 获取缓存目录
      *
@@ -358,14 +369,26 @@ public class GlideImageLoad extends ImageLoad {
      * @param cacheType
      */
     @Override
-    public void clearCache(Context context, CacheType cacheType) {
+    public void clearCache(final Context context, CacheType cacheType) {
         if (cacheType == CacheType.Disk) {
-            Glide.get(context).clearDiskCache();
+            new Thread(){
+                @Override
+                public void run() {
+                    super.run();
+                    Glide.get(context).clearDiskCache();
+                }
+            }.start();
         } else if (cacheType == CacheType.Memory) {
             Glide.get(context).clearMemory();
         } else if (cacheType == CacheType.All) {
-            Glide.get(context).clearDiskCache();
             Glide.get(context).clearMemory();
+           new Thread(){
+               @Override
+               public void run() {
+                   super.run();
+                   Glide.get(context).clearDiskCache();
+               }
+           }.start();
 
         }
     }

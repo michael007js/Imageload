@@ -1,6 +1,7 @@
 package com.eagersoft.youzy.ui.Main.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import com.eagersoft.youzy.imageload.R;
 import com.eagersoft.youzy.ui.Main.Bean.ImageBean;
 import com.sss.imageload.ImageloadManager;
+import com.sss.imageload.dao.OnProgressCallBack;
 import com.sss.imageload.options.ImageTypeOption;
 import com.sss.imageload.options.ImageloadOption;
 import com.sss.imageload.widget.ImageloadView;
@@ -46,7 +48,7 @@ public class MainAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, final ViewGroup parent) {
         MainAdapterHolder mainAdapterHolder;
         if (convertView==null){
             mainAdapterHolder=new MainAdapterHolder();
@@ -64,7 +66,7 @@ public class MainAdapter extends BaseAdapter {
                 .load(list.get(position).uri)//图片地址
                 .setDuration(100)//淡入淡出时间
                 .setThumbnail(true)//渐进式加载
-                .setRoundAngle(20)//圆角
+                .setRoundAngle(20)//圆角（设置0为非圆角，默认5）
                 .setPlacesHolderImageInt(R.mipmap.ic_launcher)//占位图
                 .setErrorImageInt(R.mipmap.ic_launcher)//错误图
                 .setGif(list.get(position).isGif)//设置是否是GIF模式

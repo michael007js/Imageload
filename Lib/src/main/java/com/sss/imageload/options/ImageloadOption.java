@@ -9,6 +9,7 @@ import com.sss.imageload.R;
 import com.sss.imageload.dao.OnDownloadImageSuccessOrFailCallBack;
 import com.sss.imageload.dao.OnImageloadSuccessOrFailCallBack;
 import com.sss.imageload.dao.OnMeasureImageSizeCallBack;
+import com.sss.imageload.dao.OnProgressCallBack;
 import com.sss.imageload.enums.ImageType;
 import com.sss.imageload.widget.ImageloadView;
 
@@ -20,6 +21,7 @@ import java.io.File;
  */
 
 public class ImageloadOption {
+    private OnProgressCallBack onProgressCallBack;//图片实时加载进度回调(只在加载网络图片的时候有效)
     private OnMeasureImageSizeCallBack onMeasureImageSizeCallBack;//测量图片尺寸回调
     private OnImageloadSuccessOrFailCallBack onImageloadSuccessOrFailCallBack;//图片加载回调
     private OnDownloadImageSuccessOrFailCallBack onDownloadImageSuccessOrFailCallBack;//图片下载回调
@@ -81,6 +83,15 @@ public class ImageloadOption {
 
     public Uri getUri() {
         return uri;
+    }
+
+    public ImageloadOption setOnProgressCallBack(OnProgressCallBack onProgressCallBack) {
+        this.onProgressCallBack = onProgressCallBack;
+        return this;
+    }
+
+    public OnProgressCallBack getOnProgressCallBack() {
+        return onProgressCallBack;
     }
 
     public OnMeasureImageSizeCallBack getOnMeasureImageSizeCallBack() {
@@ -289,11 +300,13 @@ public class ImageloadOption {
 
     /**
      * 测量图片
+     *
      * @param context
      */
-    public void  measureImage(Context context){
+    public void measureImage(Context context) {
         ImageloadManager.getInstance().measureImage(context, this);
     }
+
     /**
      * 召唤神龙
      *

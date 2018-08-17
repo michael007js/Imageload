@@ -3,7 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
+<com.sss.imageload.widget.ImageloadView
+    android:id="@+id/pic"
+    android:layout_width="100dp"
+    android:layout_height="100dp" />
     <ListView
         android:id="@+id/listview"
         android:layout_width="match_parent"

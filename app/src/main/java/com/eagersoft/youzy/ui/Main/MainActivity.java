@@ -1,9 +1,11 @@
 package com.eagersoft.youzy.ui.Main;
 
 import android.Manifest;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
@@ -15,8 +17,17 @@ import com.eagersoft.youzy.ui.Main.View.IMainView;
 import com.hjq.permissions.OnPermission;
 import com.hjq.permissions.XXPermissions;
 import com.sss.imageload.ImageloadManager;
+import com.sss.imageload.dao.OnDownloadImageSuccessOrFailCallBack;
+import com.sss.imageload.dao.OnImageloadSuccessOrFailCallBack;
 import com.sss.imageload.dao.OnMeasureImageSizeCallBack;
+import com.sss.imageload.dao.OnProgressCallBack;
+import com.sss.imageload.enums.CacheType;
+import com.sss.imageload.enums.ImageType;
+import com.sss.imageload.options.ImageTypeOption;
+import com.sss.imageload.options.ImageloadOption;
+import com.sss.imageload.widget.ImageloadView;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,25 +44,42 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         presenter = new MainPresenter(this);
         requestExternalStoragePermission();
 
-        new Thread(){
-            @Override
-            public void run() {
-                super.run();
-                String url = "https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1531795345&di=cf95bcc467333c81cba8f46d5a91f5cb&src=http://image2.suning.cn/uimg/b2c/newcatentries/0070173409-000000000706960205_5_800x800.jpg";
 
-                ImageloadManager.getInstance().load(url).setDownloadFileName("123").setOnMeasureImageSizeCallBack(new OnMeasureImageSizeCallBack() {
-                    @Override
-                    public void onMeasureImageSize(int imageWidth, int imageHeight) {
-                        Log.e("sssss",imageWidth+"---"+imageHeight);
-                    }
 
+
+
+
+        ImageloadManager.getInstance()
+                .load("http://img1.gtimg.com/house_wuhan/pics/hv1/0/16/1926/125242230.jpg")//图片地址(支持网络路径,资源路径,文件路径,uri路径)
+                .setDuration(100)//淡入淡出时间(ms),默认300ms
+                .setThumbnail(true)//渐进式加载
+                .setRoundAngle(20f)//圆角,默认5f
+                .setPlacesHolderImageInt(R.mipmap.ic_launcher)//占位图（int引用类型）
+                .setErrorImageInt(R.mipmap.ic_launcher)//错误图（int引用类型）
+                .setGif(false)//设置是否是GIF模式
+                .setImageType(ImageType.Toon)//卡通特效
+                .setImageTypeOption(//设置特效参数（内部默认了一套个人认为比较好的参数，开发者可以不需要再设置参数，当然，也可以自定义）
+                        new ImageTypeOption()
+                )//构造特效参数类（内部一堆参数，开发者自己看需求配合ImageType中的哪种特效来设置对应的参数）
+                .setOnProgressCallBack(new OnProgressCallBack() {//图片实时加载进度回调
                     @Override
-                    public void onMeasureImageFail(Throwable throwable) {
-                        Log.e("sssss",throwable.getLocalizedMessage());
+                    public void onProgress(int percentage) {
+                        Log.e("SSSSS",percentage+"");
                     }
-                }).measureImage(MainActivity.this);
-            }
-        }.start();
+                })
+                .into((ImageloadView) findViewById(R.id.pic));//召唤神龙
+
+
+
+
+
+
+
+
+
+
+
+
 
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override

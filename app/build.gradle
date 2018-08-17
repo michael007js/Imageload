@@ -47,7 +47,7 @@ dependencies {
 
 
         implementation project(':Lib')
-//    implementation 'com.michael007js:Lib:1.0.0'
+//    implementation 'com.michael007js:Lib:1.0.1'
 }
 
 

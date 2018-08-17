@@ -16,7 +16,7 @@ public class MainModel {
 
 
     public void getList(IMainModel iMainModel) {
-        String url = "https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1531795345&di=cf95bcc467333c81cba8f46d5a91f5cb&src=http://image2.suning.cn/uimg/b2c/newcatentries/0070173409-000000000706960205_5_800x800.jpg";
+        String url = "http://img1.gtimg.com/house_wuhan/pics/hv1/181/15/1926/125242156.jpg";
        String gifUrl="http://img.mp.itc.cn/upload/20170312/497e463688644e8d8b8538d9961929d9.gif";
         if (iMainModel != null) {
             List<ImageBean> list = new ArrayList<>();
