@@ -17,8 +17,10 @@ No picture u say a j8!
 
  **使用说明** 
     
-    导入本库依赖
-    implementation 'com.michael007js:Lib:1.0.1'
+  导入本库依赖
+  
+    implementation 'com.michael007js:Lib:1.0.2'
+
  
     导入第三方依赖，看使用哪种框架就导入哪种依赖，这里提供两种用的比较多的依赖（如果你需要使用到图像处理，则必须导入下面的图像引擎，否则将报错！！！）
     implementation 'com.github.bumptech.glide:glide:4.5.0'  //glide
@@ -119,10 +121,7 @@ public abstract class ImageLoad {
             android:name="com.sss.imageload.progress.GlideCache"
             android:value="GlideModule" />
             
-本库已经提供了一Glide专用进度监听模块（这里参考了郭霖的相关代码，在此表示感谢），
-完整路径为com.sss.imageload.progress，
-时用Fresco的开发者就不要在意这些细节了，
-然后，加载图片的时候设置一个回调就欧了
+本库已经提供了一Glide专用进度监听模块（这里参考了郭霖的相关代码，在此表示感谢），完整路径为com.sss.imageload.progress，使用Fresco的开发者就不要在意这些细节了，然后，加载图片的时候设置一个回调就欧了
 
         
          .setOnProgressCallBack(new OnProgressCallBack() {//图片实时加载进度回调
@@ -255,6 +254,15 @@ Fresco:
 }
 
 -dontwarn com.facebook.infer.**
+
+
+**历史版本**
+
+V1.0.2：加入图片加载进度接口
+
+V1.0.1：修复使用中的bugs,加入独立的图片尺寸测量接口
+
+V1.0.0：初始版本上线
 
  over
 
