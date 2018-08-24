@@ -71,6 +71,8 @@ public abstract class ImageLoad {
     Fresco.initialize(this, FrescoImagePipelineConfig.getDefaultImagePipelineConfig(this));
     ImageloadManager.getInstance().build(new ImageloadManager.Builder().setImageLoad(new FrescoImageLoad())); 
 
+**使用Glide的开发者注意：请在res=>values包中创建一个ids.xml，如果有的话就加上 <item type="id" name="glide_tag" />，然后在Application中设置一下ViewTarget.setTagId(R.id.glide_tag)!不这样做的话在listview中会报错！切记！！！**
+
 开发者只需要在此将imageload的实现类FrescoImageLoad替换成想要的框架即可
 
 
