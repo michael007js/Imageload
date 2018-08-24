@@ -4,6 +4,8 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 
+import com.bumptech.glide.request.target.ViewTarget;
+import com.eagersoft.youzy.imageload.R;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.sss.imageload.ImageloadManager;
 import com.sss.imageload.frescoConfig.FrescoImagePipelineConfig;
@@ -23,6 +25,7 @@ public class MyApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        ViewTarget.setTagId(R.id.glide_tag);
         Fresco.initialize(this, FrescoImagePipelineConfig.getDefaultImagePipelineConfig(this));
         ImageloadManager.Builder builder=new ImageloadManager.Builder()
                 .setImageLoad(new GlideImageLoad());

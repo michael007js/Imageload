@@ -120,7 +120,7 @@ public class GlideImageLoad extends ImageLoad {
         }
 
         //圆角
-        RoundedCorners roundedCorners = new RoundedCorners(((int) option.getRoundAngle() > 0 ? (int) option.getRoundAngle() : 0));
+        RoundedCorners roundedCorners = new RoundedCorners(((int) option.getRoundAngle() > 0 ? (int) option.getRoundAngle() : 1));
         //设置图片显示效果
         if (option.getImageType() == ImageType.Mask && option.getImageTypeOption().getMask() != 0) {
             MultiTransformation multiTransformation = new MultiTransformation<>(

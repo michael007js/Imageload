@@ -46,8 +46,8 @@ dependencies {
     implementation 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
 
 
-        implementation project(':Lib')
-//    implementation 'com.michael007js:Lib:1.0.1'
+//        implementation project(':Lib')
+    implementation 'com.michael007js:Lib:1.0.2'
 }
 
 
