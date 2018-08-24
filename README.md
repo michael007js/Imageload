@@ -19,7 +19,7 @@ No picture u say a j8!
     
   导入本库依赖
   
-    implementation 'com.michael007js:Lib:1.0.2'
+    implementation 'com.michael007js:Lib:1.0.3'
 
  
     导入第三方依赖，看使用哪种框架就导入哪种依赖，这里提供两种用的比较多的依赖（如果你需要使用到图像处理，则必须导入下面的图像引擎，否则将报错！！！）
@@ -257,6 +257,8 @@ Fresco:
 
 
 **历史版本**
+
+V1.0.3：修复Glide在ListView列表中报错的问题
 
 V1.0.2：加入图片加载进度接口
 
