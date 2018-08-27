@@ -259,6 +259,7 @@ Fresco:
 
 
 **历史版本**
+
 V1.0.4：为ImageloadView扩展手势放大缩小旋转的功能
 
 V1.0.3：修复Glide在ListView列表中报错的问题
