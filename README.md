@@ -19,7 +19,7 @@ No picture u say a j8!
     
   导入本库依赖
   
-    implementation 'com.michael007js:Lib:1.0.2'
+    implementation 'com.michael007js:Lib:1.0.3'
 
  
     导入第三方依赖，看使用哪种框架就导入哪种依赖，这里提供两种用的比较多的依赖（如果你需要使用到图像处理，则必须导入下面的图像引擎，否则将报错！！！）
@@ -70,6 +70,8 @@ public abstract class ImageLoad {
     
     Fresco.initialize(this, FrescoImagePipelineConfig.getDefaultImagePipelineConfig(this));
     ImageloadManager.getInstance().build(new ImageloadManager.Builder().setImageLoad(new FrescoImageLoad())); 
+
+**使用Glide的开发者注意：请在res=>values包中创建一个ids.xml，如果有的话就加上 <item type="id" name="glide_tag" />，然后在Application中设置一下ViewTarget.setTagId(R.id.glide_tag)!不这样做的话在listview中会报错！切记！！！**
 
 开发者只需要在此将imageload的实现类FrescoImageLoad替换成想要的框架即可
 
@@ -257,6 +259,8 @@ Fresco:
 
 
 **历史版本**
+
+V1.0.3：修复Glide在ListView列表中报错的问题
 
 V1.0.2：加入图片加载进度接口
 
