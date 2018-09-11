@@ -19,7 +19,7 @@ No picture u say a j8!
     
   导入本库依赖
   
-    implementation 'com.michael007js:Lib:1.0.3'
+    implementation 'com.michael007js:Lib:1.0.4'
 
  
     导入第三方依赖，看使用哪种框架就导入哪种依赖，这里提供两种用的比较多的依赖（如果你需要使用到图像处理，则必须导入下面的图像引擎，否则将报错！！！）
@@ -164,7 +164,7 @@ public abstract class ImageLoad {
                 .load("http://img1.gtimg.com/house_wuhan/pics/hv1/0/16/1926/125242230.jpg")//图片地址(支持网络路径,资源路径,文件路径,uri路径)
                 .setDownloadFileName(System.currentTimeMillis() + "")//设置储存的文件名
                 .setNotifyUpdateGallery(true)//下载完成后是否通知图库更新以便插入到相册
-                .setOnDownloadImageSuccessOrFailCallBack(new OnDownloadImageSuccessOrFailCallBack() {//下载回调借口
+                .setOnDownloadImageSuccessOrFailCallBack(new OnDownloadImageSuccessOrFailCallBack() {//下载回调接口
                     @Override
                     public void onDownloadImageSuccess(File file) {
                         /*
@@ -259,6 +259,8 @@ Fresco:
 
 
 **历史版本**
+
+V1.0.4：为ImageloadView扩展手势放大缩小旋转的功能
 
 V1.0.3：修复Glide在ListView列表中报错的问题
 
