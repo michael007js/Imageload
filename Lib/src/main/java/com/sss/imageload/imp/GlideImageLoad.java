@@ -109,13 +109,9 @@ public class GlideImageLoad extends ImageLoad {
                 return false;
             }
         });
-        //设置图片显示类型
+        //设置是否是圆
         BitmapTransformation bitmapTransformation = new CenterCrop();
-        if (option.isFitCenter()) {
-            bitmapTransformation = new FitCenter();
-        } else if (option.isCenterCrop()) {
-            bitmapTransformation = new CenterCrop();
-        } else if (option.isCircleCrop()) {
+        if (option.isCircleCrop()) {
             bitmapTransformation = new CircleCrop();
         }
 
@@ -243,9 +239,17 @@ public class GlideImageLoad extends ImageLoad {
             }
         }
 
+        //图片显示类型
+        if (option.isFitCenter()) {
+            requestOptions.fitCenter();
+        } else if (option.isCenterCrop()) {
+            requestOptions.centerCrop();
+        }
+
         //渐隐渐现
         if (option.getDuration() > 0) {
-            requestBuilder.transition(DrawableTransitionOptions.withCrossFade(new DrawableCrossFadeFactory.Builder(option.getDuration()).setCrossFadeEnabled(true)));
+            //这里注释是因为与上面图片显示类型起冲突，暂时还未找到解决办法，后续迭代时看情况更新
+//            requestBuilder.transition(DrawableTransitionOptions.withCrossFade(new DrawableCrossFadeFactory.Builder(option.getDuration()).setCrossFadeEnabled(true)));
         }
         //召唤神龙
         requestBuilder.apply(requestOptions);

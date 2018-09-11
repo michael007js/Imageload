@@ -29,7 +29,7 @@ public class ImageloadOption {
     private ImageTypeOption imageTypeOption = new ImageTypeOption();//提供一个默认的图片显示效果配置类，用户可以自定义
     private float roundAngle = 5f;//圆角
     private int roundAngleColor = R.color.white;//圆角颜色，fresco专用且必须使用引用，如果使用非引用的颜色的话Fresco会报错！如果使用fresco框架，且设置圆角的话则必须设置此参数
-    private int duration = 300;//淡入淡出时间
+    private int duration = 0;//淡入淡出时间
     private boolean isGif;//是否为GIF
     private boolean thumbnail = true;//渐进式加载
     private int imageWidth;//宽度(bitmap)
