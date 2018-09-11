@@ -19,7 +19,7 @@ No picture u say a j8!
     
   导入本库依赖
   
-    implementation 'com.michael007js:Lib:1.0.4'
+    implementation 'com.michael007js:Lib:1.0.6'
 
  
     导入第三方依赖，看使用哪种框架就导入哪种依赖，这里提供两种用的比较多的依赖（如果你需要使用到图像处理，则必须导入下面的图像引擎，否则将报错！！！）
@@ -259,6 +259,10 @@ Fresco:
 
 
 **历史版本**
+
+V1.0.6：修复Glide框架下图片类型显示错误的问题,剔除Glide下渐隐渐现的功能
+
+V1.0.5：跳过
 
 V1.0.4：为ImageloadView扩展手势放大缩小旋转的功能
 
