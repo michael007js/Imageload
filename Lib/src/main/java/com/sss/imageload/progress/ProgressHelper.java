@@ -1,20 +1,11 @@
 package com.sss.imageload.progress;
 
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.sss.imageload.dao.OnProgressCallBack;
 
-import java.io.IOException;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-
-import okhttp3.Interceptor;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
 
 /**
  * Glide图片加载实时进度监听帮助类
