@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <meta-data
-            android:name="com.sss.imageload.progress.GlideCache"
+            android:name="com.sss.imageload.progress.AppGlideModule"
             android:value="GlideModule" />
         <activity android:name="com.eagersoft.youzy.ui.Main.MainActivity">
             <intent-filter>

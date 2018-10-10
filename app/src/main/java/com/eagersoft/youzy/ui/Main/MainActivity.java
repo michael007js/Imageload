@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements IMainView {
                         Log.e("SSSSS",percentage+"");
                     }
                 })
-                .into((ImageloadView) findViewById(R.id.pic));//召唤神龙
+                .into((ImageloadView) findViewById(R.id.pic),this);//召唤神龙
 
 
 
