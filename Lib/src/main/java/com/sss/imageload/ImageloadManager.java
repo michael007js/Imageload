@@ -1,6 +1,7 @@
 package com.sss.imageload;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 
@@ -61,6 +62,11 @@ public class ImageloadManager {
     }
 
     /*************************************************设置图片加载地址↓*************************************************/
+    public ImageloadOption load(Bitmap bitmap) {
+        check();
+        return new ImageloadOption(bitmap);
+    }
+
     public ImageloadOption load(String path) {
         check();
         return new ImageloadOption(path);

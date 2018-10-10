@@ -54,6 +54,10 @@ public class ImageloadOption {
 
     /*************************************************设置参数↓*************************************************/
 
+    public ImageloadOption(Bitmap bitmap) {
+        this.bitmap = bitmap;
+    }
+
     public ImageloadOption(String path) {
         this.path = path;
     }
@@ -74,9 +78,6 @@ public class ImageloadOption {
         return bitmap;
     }
 
-    public void setBitmap(Bitmap bitmap) {
-        this.bitmap = bitmap;
-    }
 
     public String getPath() {
         return path;
@@ -321,11 +322,19 @@ public class ImageloadOption {
      *
      * @param view
      */
+    public void into(ImageloadView view) {
+        into(view,view.getContext());
+    }
+
+    /**
+     * 召唤神龙
+     *
+     * @param view
+     */
     public void into(ImageloadView view,Context context) {
         this.view = view;
         ImageloadManager.getInstance().displayImage(this,context);
 
     }
-
 
 }
