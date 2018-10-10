@@ -19,11 +19,11 @@ No picture u say a j8!
     
   导入本库依赖
   
-    implementation 'com.michael007js:Lib:1.0.6'
+    implementation 'com.michael007js:Lib:1.0.7'
 
  
     导入第三方依赖，看使用哪种框架就导入哪种依赖，这里提供两种用的比较多的依赖（如果你需要使用到图像处理，则必须导入下面的图像引擎，否则将报错！！！）
-    implementation 'com.github.bumptech.glide:glide:4.5.0'  //glide
+    implementation 'com.github.bumptech.glide:glide:4.7.1'  //glide
     implementation 'com.facebook.fresco:fresco:1.9.0'    // fresco
     implementation 'com.facebook.fresco:animated-gif:1.9.0'    // fresco     支持 GIF 动图，需要添加
     implementation 'jp.wasabeef:fresco-processors:2.1.0' //fresco图像引擎//https://github.com/wasabeef/fresco-processors
@@ -259,6 +259,8 @@ Fresco:
 
 
 **历史版本**
+
+V1.0.7：升级Glide,修改最低兼容等级
 
 V1.0.6：修复Glide框架下图片类型显示错误的问题,剔除Glide下渐隐渐现的功能
 
