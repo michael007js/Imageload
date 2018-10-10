@@ -77,8 +77,7 @@ public class MainAdapter extends BaseAdapter {
         }else {
             imageloadOption.fitCenter();
         }
-
-        imageloadOption.into(mainAdapterHolder.image);//设置
+        imageloadOption.into(mainAdapterHolder.image,convertView.getContext());//设置
         mainAdapterHolder.name.setText((position+1)+"."+list.get(position).name);
         return convertView;
     }

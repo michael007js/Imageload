@@ -10,6 +10,7 @@ import android.graphics.PointF;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -70,7 +71,7 @@ public class FrescoImageLoad extends ImageLoad {
      * 显示图片
      */
     @Override
-    public void displayImage(final ImageloadOption option) {
+    public void displayImage(final ImageloadOption option,Context context) {
         //解析图片地址
         Uri uri = null;
         if (option.getUri() != null) {
@@ -81,6 +82,8 @@ public class FrescoImageLoad extends ImageLoad {
             uri = Uri.parse("res://" + option.getTarget().getContext().getPackageName() + "/" + option.getRes());
         } else if (option.getFile() != null) {
             uri = Uri.fromFile(option.getFile());
+        }else if (option.getBitmap()!=null){
+             uri = Uri.parse(MediaStore.Images.Media.insertImage(context.getContentResolver(), option.getBitmap(), null,null));
         }
         //设置bitmap尺寸
         ResizeOptions resizeOptions = null;

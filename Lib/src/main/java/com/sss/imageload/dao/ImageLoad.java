@@ -18,7 +18,7 @@ public abstract class ImageLoad {
      * 显示图片
      * @param option
      */
-    public abstract void displayImage(ImageloadOption option);
+    public abstract void displayImage(ImageloadOption option,Context context);
 
 
     /**

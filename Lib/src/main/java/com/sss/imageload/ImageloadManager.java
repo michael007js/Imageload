@@ -115,9 +115,9 @@ public class ImageloadManager {
      *
      * @param imageloadOption
      */
-    public void displayImage(ImageloadOption imageloadOption) {
+    public void displayImage(ImageloadOption imageloadOption,Context context) {
         check();
-        imageLoad.displayImage(imageloadOption);
+        imageLoad.displayImage(imageloadOption,context);
     }
 
     /**

@@ -68,7 +68,7 @@ public class GlideImageLoad extends ImageLoad {
      * 显示图片
      */
     @Override
-    public void displayImage(final ImageloadOption option) {
+    public void displayImage(final ImageloadOption option,Context context) {
         //请求设置
         RequestOptions requestOptions = new RequestOptions();
         RequestBuilder requestBuilder = null;
@@ -89,6 +89,8 @@ public class GlideImageLoad extends ImageLoad {
             requestBuilder = requestManager.load(option.getRes());
         } else if (option.getFile() != null) {
             requestBuilder = requestManager.load(option.getFile());
+        }else if (option.getBitmap()!=null){
+            requestBuilder = requestManager.load(option.getBitmap());
         }
         //设置请求监听
         requestBuilder.listener(new RequestListener<Drawable>() {

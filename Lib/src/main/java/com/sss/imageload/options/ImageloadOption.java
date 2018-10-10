@@ -1,6 +1,7 @@
 package com.sss.imageload.options;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 
@@ -41,6 +42,7 @@ public class ImageloadOption {
     private boolean fitCenter;//自适应控件, 不剪裁 ,在不超过控件的前提下,等比 缩放 到 最大 ,居中显示
     private boolean circleCrop;//裁剪为圆
     private boolean centerCrop;//以填满整个控件为目标,等比缩放,超过控件时将被 裁剪 ( 宽高都要填满 ,所以只要图片宽高比与控件宽高比不同时,一定会被剪裁)
+    private Bitmap bitmap;//位图
     private String path;//网络路径
     private int res;//资源路径
     private File file;//文件路径
@@ -68,6 +70,13 @@ public class ImageloadOption {
         this.uri = uri;
     }
 
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
+    }
 
     public String getPath() {
         return path;
@@ -312,9 +321,9 @@ public class ImageloadOption {
      *
      * @param view
      */
-    public void into(ImageloadView view) {
+    public void into(ImageloadView view,Context context) {
         this.view = view;
-        ImageloadManager.getInstance().displayImage(this);
+        ImageloadManager.getInstance().displayImage(this,context);
 
     }
 
