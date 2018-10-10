@@ -19,7 +19,7 @@ No picture u say a j8!
     
   导入本库依赖
   
-    implementation 'com.michael007js:Lib:1.0.7'
+    implementation 'com.michael007js:Lib:1.0.9'
 
  
     导入第三方依赖，看使用哪种框架就导入哪种依赖，这里提供两种用的比较多的依赖（如果你需要使用到图像处理，则必须导入下面的图像引擎，否则将报错！！！）
@@ -259,6 +259,10 @@ Fresco:
 
 
 **历史版本**
+
+V1.0.9：修复进度监听的问题
+
+V1.0.8：增加对bitmap的支持
 
 V1.0.7：升级Glide,修改最低兼容等级
 
