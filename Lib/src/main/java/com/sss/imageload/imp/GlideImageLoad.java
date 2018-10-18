@@ -92,6 +92,9 @@ public class GlideImageLoad extends ImageLoad {
         }else if (option.getBitmap()!=null){
             requestBuilder = requestManager.load(option.getBitmap());
         }
+        if (requestBuilder==null){
+            return;
+        }
         //设置请求监听
         requestBuilder.listener(new RequestListener<Drawable>() {
             @Override

@@ -85,6 +85,9 @@ public class FrescoImageLoad extends ImageLoad {
         }else if (option.getBitmap()!=null){
              uri = Uri.parse(MediaStore.Images.Media.insertImage(context.getContentResolver(), option.getBitmap(), null,null));
         }
+        if (uri==null){
+            return;
+        }
         //设置bitmap尺寸
         ResizeOptions resizeOptions = null;
         if (option.getImageWidth() > 0 && option.getImageHeight() > 0) {
