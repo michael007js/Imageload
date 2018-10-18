@@ -7,7 +7,7 @@ No picture u say a j8!
 ![闭嘴看图](https://github.com/michael007js/Imageload/blob/master/images/03.gif "闭嘴看图")
 
 
- **项目介绍** 
+## 项目介绍
 一个双击666的图片加载框架，支持fresco、glide、Picasso等等之类的主流框架，内部默认封装了Glide[传送门](https://github.com/michael007js/Imageload/blob/master/Lib/src/main/java/com/sss/imageload/imp/GlideImageLoad.java)、Fresco[传送门](https://github.com/michael007js/Imageload/blob/master/Lib/src/main/java/com/sss/imageload/imp/FrescoImageLoad.java)，具有非常高的可扩展性，开发者可非常方便的来回切换想要的框架。（个人推荐使用强大的Fresco）框架默认除了支持普通图片的各种加载外，还提供了一套特效加载，特效枚举类ImageType，提供了默认的特效参数配置类ImageTypeOption，可以自己设置，也可以new 一个开发者自定义的特效参数配置类
 
 开发者不需要关心框架内部怎么实现，管你里面是啥玩意，跟我有半毛钱的关系吗？只需要知道继承ImageLoad这个抽象类实现内部的抽象方法即可，这也是开发者唯一需要做的事情
@@ -15,11 +15,23 @@ No picture u say a j8!
 其次，建议开发者使用框架内部提供的ImageloadView控件作为图片框
 [原因如下](https://github.com/michael007js/Imageload/blob/master/Lib/src/main/java/com/sss/imageload/widget/ImageloadView.java)
 
- **使用说明** 
+
+## 功能介绍
+
+- [x] 支持网络路径、资源路径、文件路径、文件路径、uri路径、bitmap加载
+- [x] 支持图片特效且支持自定义特效参数
+- [x] 支持不加载图片直接测量其尺寸
+- [x] 支持图片加载实时进度监听
+- [x] 支持图片下载并插入系统相册
+- [x] 不吹不黑，本库可以支持市面上所有的图片加载框架，且支持未来将要可能出现的框架！
+
+
+
+ ## 使用说明
     
   导入本库依赖
   
-    implementation 'com.michael007js:Lib:1.0.9'
+    implementation 'com.michael007js:Lib:1.1.0'
 
  
     导入第三方依赖，看使用哪种框架就导入哪种依赖，这里提供两种用的比较多的依赖（如果你需要使用到图像处理，则必须导入下面的图像引擎，否则将报错！！！）
@@ -216,6 +228,11 @@ public abstract class ImageLoad {
         ImageloadManager.getInstance().clearCache(this, CacheType.All);
 
 
+## 计划或目标
+
+    Glide框架下的淡入淡出
+    
+
 **混淆添加**
 
 Glide:
@@ -259,6 +276,8 @@ Fresco:
 
 
 **历史版本**
+
+V1.0.9：新增重载方法
 
 V1.0.9：修复进度监听的问题
 
